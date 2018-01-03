@@ -1,0 +1,35 @@
+server:
+  port: 8193
+management:
+  port: 9003
+  context-path: '/9511d89d-6488-4293-8df8-c4feb8681e83'
+turbine:
+  app-config: order-service
+  aggregator:
+    clusterConfig: dmall
+  cluster-name-expression: metadata['cluster']
+  # cluster-name-expression: "'default'"
+  instanceUrlSuffix:
+    dmall: '/78d504ff-82e8-4a87-82e8-724d72d1171b/hystrix.stream'
+
+eureka:
+  client:
+   service-url:
+      defaultZone: 'http://dmall-registry-server:8761/eureka/'
+  instance:
+    metadata-map:
+      management:
+        port: ${management.port}
+        context-path: ${management.context-path}
+      health:
+        path: ${management.context-path}/health
+    status-page-url-path: ${management.context-path}/info
+    health-check-url-path: ${management.context-path}/health
+    prefer-ip-address: true
+spring:
+  application:
+    name: hystrix
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
