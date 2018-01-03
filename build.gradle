@@ -21,7 +21,7 @@ apply plugin: 'io.spring.dependency-management'
 
 
 jar {
-    baseName = 'dmall-hystrix-dashboard'
+    baseName = 'hystrix-dashboard'
     version =  '0.0.1'
 }
 

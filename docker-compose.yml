@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  dmall-hystrix-dashboard:
+    image: '${DMALL_DOCKER_REGISTRY}/dmall/hystrix-dashboard:${BUILD_NUMBER}'
+    environment:
+      ACTIVE_PROFILE: dev
+    ports:
+      - "8193:8193"
+      - "7104:7104"
+    external_links:
+      - dmall-config-server/dmall-config-server:dmall-config-server
+      - dmall-registry-server/dmall-registry-server:dmall-registry-server
+    
